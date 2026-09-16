@@ -416,6 +416,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 5.0)
+  dotenv
   factory_bot_rails
   image_processing (~> 1.2)
   kamal

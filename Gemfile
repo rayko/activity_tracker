@@ -22,6 +22,7 @@ gem "devise", "~> 5.0"
 gem "view_component"
 
 group :development, :test do
+  gem "dotenv"
   gem "sqlite3", ">= 2.1"
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "bundler-audit", require: false

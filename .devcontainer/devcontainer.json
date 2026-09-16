@@ -1,0 +1,23 @@
+{
+  "name": "activity_tracker",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+  "forwardPorts": [3000, 3036],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "web",
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "3036": {
+      "label": "assets",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
+    }
+  },
+
+  "postCreateCommand": "echo \"Env up, install deps and bake assets\""
+}

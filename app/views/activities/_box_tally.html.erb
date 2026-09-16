@@ -1,7 +1,6 @@
-<% tally = activity.activity_hits.count %>
+<% tally ||= 0 %>
 <% if tally > 0 %>
   <div class="flex flex-row">
-    <% tally = activity.activity_hits.count %>
     <% rest = tally % 5 %>
     <% sets = tally / 5 %>
     <% sets.times do %>

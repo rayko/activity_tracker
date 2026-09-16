@@ -38,7 +38,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </div>
-          <div id="user-options-dropdown" class="hidden block text-center z-100 absolute top-12 right-2 w-1/8 border-1 border-gray-300 bg-gray-100">
+          <div id="user-options-dropdown" class="hidden block text-center z-100 absolute top-12 right-4 w-50 border-1 border-gray-300 bg-gray-100">
             <%= link_to "Account", user_path, class: "block text-sky-700 p-2 border-b border-gray-400 hover:text-white hover:bg-sky-600" %>
             <%= link_to "Manage Activities", activities_path, class: "block text-sky-700 p-2 border-b border-gray-400 hover:text-white hover:bg-sky-600" %>
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "cursor-pointer text-sky-700 block p-2 hover:text-white hover:bg-sky-600 w-full" %>

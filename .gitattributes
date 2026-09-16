@@ -2,8 +2,20 @@
 
 # Mark the database schema as having been generated.
 db/schema.rb linguist-generated
+Gemfile.lock linguist-generated
+package-lock.json linguist-generated
 
 # Mark any vendored files as having been vendored.
 vendor/* linguist-vendored
 config/credentials/*.yml.enc diff=rails_credentials
 config/credentials.yml.enc diff=rails_credentials
+
+* text=auto eol=lf
+bin/* text eol=lf
+*.sh text eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.ico binary
+*.svg text

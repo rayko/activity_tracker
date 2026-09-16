@@ -41,3 +41,6 @@ node_modules
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
 
+# Togo todo manager files
+.togo
+todos.json

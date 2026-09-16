@@ -12,10 +12,6 @@ gem 'vite_rails'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-gem "solid_cache"
-gem "solid_queue"
-gem "solid_cable"
-
 gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false

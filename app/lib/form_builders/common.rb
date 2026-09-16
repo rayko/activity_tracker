@@ -36,14 +36,14 @@ module FormBuilders
     end
 
     def email_field(method, options = {})
-      opts = { class: _txt_class }.merge(options)
+      opts = { class: _txt_class(method) }.merge(options)
       box_field_container(method) do
         @template.email_field(@object_name, method, objectify_options(opts))
       end
     end
 
     def password_field(method, options = {})
-      opts = { class: _txt_class }.merge(options)
+      opts = { class: _txt_class(method) }.merge(options)
       box_field_container(method) do
         @template.password_field(@object_name, method, objectify_options(opts))
       end
@@ -76,7 +76,7 @@ module FormBuilders
     end
 
     def _submit_class
-      "rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300 px-3 py-1 hover:outline-2 hover:outline-sky-500 text-shadow-md/30"
+      "cursor-pointer rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300 px-3 py-1 hover:outline-2 hover:outline-sky-500 text-shadow-md/30"
     end
 
     def _txt_class(method)

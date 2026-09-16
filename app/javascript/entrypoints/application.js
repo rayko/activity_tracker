@@ -42,5 +42,8 @@ ActiveStorage.start()
 
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
+
+//import "@assets/images/boxTally5.svg"
+
 import "@assets/stylesheets/tailwind.css"
 import "@assets/stylesheets/default.sass"

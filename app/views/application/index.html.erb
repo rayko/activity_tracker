@@ -10,7 +10,7 @@
         </td>
 
         <td class="activity-hits p-2 w-full ">
-          <%= activity_hits_display(activity) %>
+          <%= render partial: "activities/box_tally", locals: { activity: activity } %>
         </td>
 
         <td class="activity-actions p-2">

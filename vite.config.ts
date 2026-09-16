@@ -11,12 +11,8 @@ export default defineConfig({
       '@views': resolve(import.meta.dirname, 'app/views')
     },
   },
-  css: {
-    transformer: 'postcss',
-  },
-  build: {
-    cssMinify: 'esbuild',
-  },
+  css: { transformer: 'postcss' },
+  build: { cssMinify: 'esbuild' },
   plugins: [
     RubyPlugin(),
     tailwindcss()

@@ -1,0 +1,14 @@
+<% tally = activity.activity_hits.count %>
+<% if tally > 0 %>
+  <div class="flex flex-row">
+    <% tally = activity.activity_hits.count %>
+    <% rest = tally % 5 %>
+    <% sets = tally / 5 %>
+    <% sets.times do %>
+      <%= vite_image_tag "images/boxTally5.svg", class: "p-2 w-10 h-10" %>
+    <% end %>
+    <% if rest > 0 %>
+      <%= vite_image_tag "images/boxTally#{rest}.svg", class: "p-2 w-10 h-10"  %>
+    <% end %>
+  </div>
+<% end %>

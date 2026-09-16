@@ -9,12 +9,15 @@
           </span>
         </td>
 
-        <td class="activity-hits p-2 w-full "> || </td>
+        <td class="activity-hits p-2 w-full ">
+          <%= activity_hits_display(activity) %>
+        </td>
 
         <td class="activity-actions p-2">
-          <span>
-            <%= link_to "+", "#", class: regular_btn_class %>
-          </span>
+          <div class="flex flex-row">
+            <%= button_to "+", register_hit_activity_path(activity), method: :post, class: regular_btn_class %>
+            <%= button_to "-", unregister_hit_activity_path(activity), method: :post, class: regular_red_btn_class %>
+          </div>
         </td>
       </tr>
       <% end %>

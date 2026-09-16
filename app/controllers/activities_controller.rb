@@ -1,5 +1,31 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: %i[ show edit update destroy ]
+  before_action :set_activity, only: %i[ show edit update destroy register_hit unregister_hit]
+
+  def register_hit
+    respond_to do |format|
+      if @activity.activity_hits.today.any?
+        format.html { redirect_to root_path, alert: "Already registered today" }
+        format.json { render json: {error: "Already registered today"}, status: :unprocessable_content }
+      else
+        @activity.activity_hits.create!(date: Date.today)
+        format.html { redirect_to root_path, notice: "Registered hit" }
+        format.json { render :show, status: :created, location: @activity }
+      end
+    end
+  end
+
+  def unregister_hit
+    respond_to do |format|
+      if !@activity.activity_hits.today.any?
+        format.html { redirect_to root_path, alert: "No hits today" }
+        format.json { render json: {error: "No hits today"}, status: :unprocessable_content }
+      else
+        @activity.activity_hits.today.take.destroy
+        format.html { redirect_to root_path, notice: "Unregistered hit" }
+        format.json { render :show, status: :success, location: @activity }
+      end
+    end
+  end
 
   # GET /activities or /activities.json
   def index

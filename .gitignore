@@ -44,3 +44,5 @@ node_modules
 # Togo todo manager files
 .togo
 todos.json
+
+coverage/*

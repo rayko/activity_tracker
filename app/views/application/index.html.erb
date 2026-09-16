@@ -1,13 +1,31 @@
-<div>
-  <h3>It's Rails!</h3>
-  <%= @message %>
+
+<div class="activity-list mb-5">
+  <table class="table-auto w-full text-xl">
+    <tbody>
+      <% current_user.activities.each do |activity| %>
+      <tr class="border-b">
+        <td class="activity-name py-2">
+
+          <span title="<%= activity.description %>" ><%= activity.name %></span>
+
+        </td>
+
+        <td class="activity-hits py-2"> || </td>
+
+        <td class="activity-actions py-2">
+          <span>
+            <%= link_to "+", "#", class: "inline-block mx-2 rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300 px-3 py-1 hover:shadow-lg/35 hover:shadow-gray-800 text-shadow-md/30" %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
 </div>
 
 <div>
-  This part is supposed to be private
+  <span>
+    <%= link_to "New activity", new_activity_path, class: "text-blue-600" %>
+  </span>
 </div>
-
-
-<%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-blue-600" %>
-
-<%= link_to "New activity", new_activity_path, class: "text-blue-600" %>

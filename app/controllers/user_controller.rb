@@ -42,6 +42,4 @@ class UserController < ApplicationController
   def user_password_params
     params.fetch(:user, {}).permit(:current_password, :password, :password_confirmation)
   end
-
-
 end

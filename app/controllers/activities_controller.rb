@@ -2,95 +2,68 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: %i[ show edit update destroy register_hit unregister_hit ]
 
   def register_hit
-    respond_to do |format|
-      if @activity.activity_hits.today.any?
-        format.html { redirect_to root_path, alert: "Already registered today" }
-        format.json { render json: {error: "Already registered today"}, status: :unprocessable_content }
-      else
-        @activity.activity_hits.create!(date: DateTime.now)
-        format.html { redirect_to root_path, notice: "Registered hit" }
-        format.json { render :show, status: :created, location: @activity }
-      end
+    if @activity.activity_hits.today.any?
+      flash[:alert] = "Already registered today"
+    else
+      @activity.activity_hits.create!(date: DateTime.now)
+      flash[:notice] = "Registered hit"
     end
+    redirect_to root_path
   end
 
   def unregister_hit
-    respond_to do |format|
-      if !@activity.activity_hits.today.any?
-        format.html { redirect_to root_path, alert: "No hits today" }
-        format.json { render json: {error: "No hits today"}, status: :unprocessable_content }
-      else
-        @activity.activity_hits.today.take.destroy
-        format.html { redirect_to root_path, notice: "Unregistered hit" }
-        format.json { render :show, status: :success, location: @activity }
-      end
+    if !@activity.activity_hits.today.any?
+      flash[:alert] = "No hits today"
+    else
+      @activity.activity_hits.today.take.destroy
+      flash[:notice] = "Unregistered hit"
     end
+    redirect_to root_path
   end
 
-  # GET /activities or /activities.json
   def index
     @activities = Activity.all
   end
 
-  # GET /activities/1 or /activities/1.json
   def show
   end
 
-  # GET /activities/new
   def new
     @activity = Activity.new
   end
 
-  # GET /activities/1/edit
   def edit
   end
 
-  # POST /activities or /activities.json
   def create
     @activity = Activity.new(activity_params)
     @activity.user_id = current_user.id
 
-    respond_to do |format|
-      if @activity.save
-        format.html { redirect_to root_path, notice: "Activity was successfully created." }
-        format.json { render :show, status: :created, location: @activity }
-      else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @activity.errors, status: :unprocessable_content }
-      end
+    if @activity.save
+      redirect_to root_path, notice: "Activity was successfully created."
+    else
+      render :new, status: :unprocessable_content
     end
   end
 
-  # PATCH/PUT /activities/1 or /activities/1.json
   def update
-    respond_to do |format|
-      if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: "Activity was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @activity }
-      else
-        format.html { render :edit, status: :unprocessable_content }
-        format.json { render json: @activity.errors, status: :unprocessable_content }
-      end
+    if @activity.update(activity_params)
+      redirect_to @activity, notice: "Activity was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 
-  # DELETE /activities/1 or /activities/1.json
   def destroy
     @activity.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Activity was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: "Activity was successfully destroyed.", status: :see_other
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_activity
     @activity = Activity.find(params.expect(:id))
   end
 
-  # Only allow a list of trusted parameters through.
   def activity_params
     params.fetch(:activity, {}).permit(:name, :description)
   end

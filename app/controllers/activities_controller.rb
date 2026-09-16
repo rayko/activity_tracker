@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
+    @activities = current_user.activities
   end
 
   def show

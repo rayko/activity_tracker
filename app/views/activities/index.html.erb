@@ -1,16 +1,47 @@
-<p style="color: green"><%= notice %></p>
+<div class="activity-list mb-5">
+  <table class="table-auto w-full text-sm sm:text-md ">
+    <thead class="bg-slate-300 text-left ">
+      <tr class="border-b-2 border-gray-400">
+        <th class="w-15 p-2 ">ID</th>
+        <th class="p-2">Name</th>
+        <th class="p-2">Description</th>
+        <th class="p-2">Actions</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @activities.each do |activity| %>
+      
+      <tr class="bg-slate-100 border-b-2 border-gray-300">
+        <td class="p-2 text-center">
+          <%= activity.id %>
+        </td>        
 
-<% content_for :title, "Activities" %>
+        <td class="p-2 ">
+          <span title="<%= activity.description %>" >
+            <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
+          </span>
+        </td>
 
-<h1>Activities</h1>
+        <td class="p-2">
+          <%= activity.description %>
+        </td>
 
-<div id="activities">
-  <% @activities.each do |activity| %>
-    <%= render activity %>
-    <p>
-      <%= link_to "Show this activity", activity %>
-    </p>
-  <% end %>
+        <td class="p-2">
+          <div class="flex flex-row">
+            <%= link_to "Edit", edit_activity_path(activity), class: regular_btn_class %>
+            <%= button_to "Destroy", activity_path(activity), method: :delete, class: regular_red_btn_class %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New activity", new_activity_path %>
+<div class="w-50">
+  <%= link_to "New activity", new_activity_path, class: regular_btn_class %>
+</div>
+
+

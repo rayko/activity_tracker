@@ -15,11 +15,10 @@
   </div>
 
   <hr class="my-3 border-gray-400" />
-  
+
   <div class="flex flex-row">
     <div class="m-auto"><%= link_to "Edit", edit_activity_path(@activity), class: regular_btn_class %></div>
     <div class="m-auto"><%= button_to "Destroy", @activity, method: :delete, class: regular_red_btn_class, data: { turbo_confirm: "Are you sure?" }  %></div>
   </div>
-
 
 </div>

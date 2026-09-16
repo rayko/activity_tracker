@@ -14,11 +14,9 @@ gem "vite_rails"
 # gem "bcrypt", "~> 3.1.7"
 
 gem "bootsnap", require: false
-gem "kamal", require: false
 gem "image_processing", "~> 1.2"
 
 gem "devise", "~> 5.0"
-gem "view_component"
 
 group :development, :test do
   gem "dotenv"

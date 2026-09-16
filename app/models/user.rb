@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :validatable, :trackable
 
   has_many :activities
+
+  validates :name, length: { maximum: 128 }
 end

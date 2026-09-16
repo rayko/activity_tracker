@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def month_name(date)
+    date.strftime("%B")
+  end
+
   def blue_btn_class
     "cursor-pointer block bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300 w-full p-2 hover:shadow-lg/35 hover:shadow-gray-800 text-shadow-md/30"
   end

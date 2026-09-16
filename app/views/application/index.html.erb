@@ -1,19 +1,33 @@
 <div class="activity-list mb-5">
-  <table class="table-auto w-full text-sm sm:text-lg border-separate border-spacing-y-4 ">
+  <table class="table-auto w-full text-sm sm:text-lg border-separate border-spacing-y-4 border-spacing-x-4 ">
+    <thead>
+      <tr>
+        <th></th>
+        <th><%= month_name(1.month.ago) %></th>
+        <th><%= month_name(Date.today) %></th>
+        <th></th>
+      </tr>
+    </thead>
+
     <tbody>
-      <% current_user.activities.each do |activity| %>
-      <tr class="shadow-md shadow-gray-500 bg-slate-200">
-        <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300">
+      <% @activities.each do |activity| %>
+      <tr class="">
+        <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300 shadow-md shadow-gray-500 w-px">
           <span title="<%= activity.description %>" >
             <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
           </span>
         </td>
 
-        <td class="activity-hits p-2 w-full ">
-          <%= render partial: "activities/box_tally", locals: { tally: activity.activity_hits.count } %>
+        <td class="activity-hits bg-slate-200 p-2 shadow-md shadow-gray-500">
+          <%= render partial: "activities/box_tally", locals: { tally: @hits_past_month[activity.id] } %>
         </td>
 
-        <td class="activity-actions p-2">
+
+        <td class="activity-hits p-2 bg-slate-200 shadow-md shadow-gray-500">
+          <%= render partial: "activities/box_tally", locals: { tally: @hits_this_month[activity.id] } %>
+        </td>
+
+        <td class="activity-actions p-2 w-px">
           <div class="flex flex-row">
             <%= button_to "+", register_hit_activity_path(activity), method: :post, class: regular_btn_class %>
             <%= button_to "-", unregister_hit_activity_path(activity), method: :post, class: regular_red_btn_class %>

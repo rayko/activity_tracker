@@ -15,7 +15,6 @@ gem 'vite_rails'
 
 gem "bootsnap", require: false
 gem "kamal", require: false
-gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 
 gem "devise", "~> 5.0"

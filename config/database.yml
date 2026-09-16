@@ -4,8 +4,8 @@ default: &default
   timeout: 5000
   connect_timeout: 15
   encoding: unicode
-  username: <%= ENV.fetch("DB_USER") %>
-  password: <%= ENV.fetch("DB_PASS") %>
+  username: <%= ENV.fetch("DB_USER") { "" } %>
+  password: <%= ENV.fetch("DB_PASS") { "" } %>
   host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
   port: <%= ENV.fetch("DB_PORT") { "5432" } %>
 

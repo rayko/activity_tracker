@@ -1,0 +1,10 @@
+/*
+  Tailwind setup
+  Specific tailwind configs will live here, the rest is elsewhere
+*/
+@import "tailwindcss";
+
+/* Dunno what's this for */
+@source "../../../app/views/**/*.html.erb";
+@source "../../../app/views/**/*.rb";
+@source "../../../app/helpers/**/*.rb";

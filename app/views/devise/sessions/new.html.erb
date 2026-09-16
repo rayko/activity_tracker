@@ -1,25 +1,15 @@
-<div class="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+<div class="bg-gray-100 mx-auto flex max-w-2xs my-10 items-center outline-1 outline-gray-300 rounded-xl p-6 shadow-lg">
 
-  <div>
-    <h2>Log in</h2>
+  <div class="login-form w-full">
+    <h2 class="text-xl text-black">Log in</h2>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <p><%= f.label :email %></p>
-      <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), builder: FormBuilders::Devise) do |f| %>
+      <%= f.email_field :email %>
+      <%= f.password_field :password %>
 
-    <div class="field">
-      <p><%= f.label :password %></p>
-      <p><%= f.password_field :password, autocomplete: "current-password" %></p>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <p><%= f.check_box :remember_me %></p>
-      <p><%= f.label :remember_me %></p>
-    </div>
-    <% end %>
+      <% if devise_mapping.rememberable? %>
+        <%= f.remember_me_field :remember_me %>
+      <% end %>
 
     <div class="actions">
       <%= f.submit "Log in" %>
@@ -28,8 +18,5 @@
 
     <%= render "devise/shared/links" %>
 
-
-    <div class="text-xl font-medium text-black dark:text-white">ChitChat</div>
-    <p class="text-gray-500 dark:text-gray-400">You have a new message!</p>
   </div>
 </div>

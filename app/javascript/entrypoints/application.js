@@ -47,3 +47,20 @@ ActiveStorage.start()
 
 import "@assets/stylesheets/tailwind.css"
 import "@assets/stylesheets/default.sass"
+
+function openDropDown(trigger) {
+  const targetId = trigger.getAttribute("data-target-id");  
+  const targetEl = document.getElementById(targetId);
+  if (targetEl) {
+    targetEl.classList.toggle("hidden");
+    trigger.classList.toggle("bg-sky-600");
+  }
+}
+
+document.addEventListener("turbo:load", function() {
+  for (const triggerButton of document.getElementsByClassName("dropdown-trigger")) {
+    triggerButton.addEventListener("click", () => {
+      openDropDown(triggerButton);
+    })
+  }
+});

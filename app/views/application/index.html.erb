@@ -8,4 +8,6 @@
 </div>
 
 
-<%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-blue-600" %>
+
+<%= link_to "New activity", new_activity_path, class: "text-blue-600" %>

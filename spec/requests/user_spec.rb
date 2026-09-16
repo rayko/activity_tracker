@@ -20,7 +20,7 @@ RSpec.describe "Users" do
 
       it "returns 200 status" do
         get route
-        expect(response.status).to have_http_status(200)
+        expect(response).to have_http_status(200)
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe "Users" do
 
       it "returns 200 status" do
         get route
-        expect(response.status).to have_http_status(200)
+        expect(response).to have_http_status(200)
       end
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe "Users" do
 
       it "returns 200 status" do
         get route
-        expect(response.status).to have_http_status(200)
+        expect(response).to have_http_status(200)
       end
     end
   end

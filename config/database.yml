@@ -14,10 +14,8 @@ development:
   database: <%= ENV.fetch("DB_NAME") { "activity_tracker_development" } %>
 
 test:
-  adapter: sqlite3
-  max_connections: <%= ENV.fetch("DB_POOL") { 5 } %>
-  timeout: 5000
-  database: ":memory:"
+  <<: *default
+  database: test_db
 
 production:
   primary:

@@ -33,6 +33,8 @@ end
 
 group :development do
   gem "web-console"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :test do

@@ -33,6 +33,7 @@
         </div>
         <div class="flex-grow"></div>
         <div class="flex flex-row items-center">
+          <%= link_to "Account", user_path, class: regular_btn_class %>
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: regular_btn_class %>
         </div>
       </nav>

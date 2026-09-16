@@ -1,0 +1,31 @@
+<div class="w-2/6 bg-gray-200 m-auto rounded-md shadow-lg/30 text-center">
+  <div class="bg-gray-300 rounded-t-md py-2 text-lg text-gray-500 shadow-sm/20">
+    <%= "User Info" %>
+  </div>
+  <% content_for :title, "User Info" %>
+
+  <div class="p-2 text-left">
+
+    <div class="flex flex-row my-5">
+      <div class="w-1/4  p-2 text-right">Name</div>
+      <div class="ml-3 border-l border-l-gray-400 p-2 w-2/4">
+        <%= @user.name %>
+      </div>
+    </div>
+
+    <div class="flex flex-row my-5">
+      <div class="w-1/4  p-2 text-right">e-Mail</div>
+      <div class="ml-3 border-l border-l-gray-400 p-2 w-2/4">
+        <%= @user.email %>
+      </div>
+    </div>
+
+    <hr class="my-3 border-gray-400" />
+
+    <div class="flex flex-row">
+      <div class="m-auto"><%= link_to "Edit", edit_user_path, class: regular_btn_class %></div>
+      <div class="m-auto"><%= link_to "Update Password", edit_user_password_path, class: regular_btn_class %></div>
+    </div>
+
+  </div>
+</div>

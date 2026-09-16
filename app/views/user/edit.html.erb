@@ -1,0 +1,16 @@
+<div class="w-2/6 bg-gray-200 m-auto rounded-md shadow-lg/30 text-center">
+  <% content_for :title, "Edit User" %>
+  <div class="bg-gray-300 rounded-t-md py-2 text-lg text-gray-500 shadow-sm/20">
+    Edit User
+  </div>
+  <div class="p-2 text-left">
+    <%= form_with(model: @user, url: update_user_path, method: :put, builder: FormBuilders::Common) do |form| %>
+      <%= form.text_field :name, autofocus: true %>
+      <%= form.divider %>
+      <%= form.buttons do %>
+        <%= form.submit "Save" %>
+        <%= link_to_back %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

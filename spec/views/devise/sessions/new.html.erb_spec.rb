@@ -1,14 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "devise/sessions/new", type: :view do
+RSpec.describe "devise/sessions/new" do
   before do
     # Don't complain about stubbing missing methods here
     # Not the best way but it works. Assuming this is always enabled
     RSpec::Mocks.configuration.verify_partial_doubles = false
 
-    allow(view).to receive(:resource_name).and_return(:user)
-    allow(view).to receive(:resource).and_return(User.new)
-    allow(view).to receive(:devise_mapping).and_return(Devise.mappings[:user])
+    allow(view).to receive_messages(resource_name: :user, resource: User.new, devise_mapping: Devise.mappings[:user])
+
+    # allow(view).to receive(:resource_name).and_return(:user)
+    # allow(view).to receive(:resource).and_return(User.new)
+    # allow(view).to receive(:devise_mapping).and_return(Devise.mappings[:user])
     render
   end
 
@@ -17,14 +19,14 @@ RSpec.describe "devise/sessions/new", type: :view do
   end
 
   it "renders the edit activity form" do
-    expect(rendered).to have_selector("form[action='#{user_session_path}']")
+    expect(rendered).to have_field("form[action='#{user_session_path}']")
   end
 
   it "renders input for email" do
-    expect(rendered).to have_selector("input[type=email][id=user_email]")
+    expect(rendered).to have_field("input[type=email][id=user_email]")
   end
 
   it "renders input for password" do
-    expect(rendered).to have_selector("input[type=password][id=user_password]")
+    expect(rendered).to have_field("input[type=password][id=user_password]")
   end
 end

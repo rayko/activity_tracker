@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe ApplicationHelper do
   describe "#month_name" do
     it "returns month name of given date" do
       date = Date.parse("2026-07-05")
@@ -10,19 +10,19 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "#blue_btn_class" do
     it "returns string" do
-      expect(String === helper.blue_btn_class).to eq(true)
+      expect(String === helper.blue_btn_class).to be(true)
     end
   end
 
   describe "#regular_btn_class" do
     it "returns string" do
-      expect(String === helper.regular_btn_class).to eq(true)
+      expect(String === helper.regular_btn_class).to be(true)
     end
   end
 
   describe "#regular_red_btn_class" do
     it "returns string" do
-      expect(String === helper.regular_red_btn_class).to eq(true)
+      expect(String === helper.regular_red_btn_class).to be(true)
     end
   end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "tests" do
-  it "works" do
-    expect(true).to eq(true)
+RSpec.describe "RSpec" do
+  it "is defined" do
+    expect(defined?(RSpec)).to be(true)
   end
 end

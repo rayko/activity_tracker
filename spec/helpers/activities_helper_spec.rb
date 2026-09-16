@@ -10,7 +10,7 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe ActivitiesHelper, type: :helper do
+RSpec.describe ActivitiesHelper do
   describe "#activity_hits_display" do
     let(:activity) do
       record = create :activity
@@ -23,6 +23,5 @@ RSpec.describe ActivitiesHelper, type: :helper do
     it "returns expected string" do
       expect(helper.activity_hits_display(activity)).to eq("|||")
     end
-
   end
 end

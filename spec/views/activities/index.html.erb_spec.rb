@@ -1,18 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "activities/index", type: :view do
+RSpec.describe "activities/index" do
   let(:user) { create :user }
   let(:activities) do
     [
       create(:activity, user: user),
       create(:activity, user: user),
-      create(:activity, user: user)
+      create(:activity, user: user),
     ]
   end
 
-  before(:each) do
-    assign(:activities, activities)
-  end
+  before { assign(:activities, activities) }
 
   it "displays activity IDs" do
     render
@@ -41,5 +39,4 @@ RSpec.describe "activities/index", type: :view do
       expect(rendered).to have_button("Destroy")
     end
   end
-
 end

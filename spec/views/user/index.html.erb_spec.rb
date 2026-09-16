@@ -1,18 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'user/index', type: :view do
+RSpec.describe 'user/index' do
   let(:user) { create(:user) }
 
-  before do(:each)
-    assign(:user, user)
-  end
+  before { assign(:user, user) }
 
   it 'shows user name' do
-    expect(render).to have_content(user.name)
+    expect(render).to have_text(user.name)
   end
 
   it 'shows user email' do
-    expect(render).to have_content(user.email)
+    expect(render).to have_text(user.email)
   end
 
   it 'shows edit link' do

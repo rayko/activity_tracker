@@ -1,11 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "activities/show", type: :view do
+RSpec.describe "activities/show" do
   let(:activity) { create :activity }
 
-  before(:each) do
-    assign(:activity, activity)
-  end
+  before { assign(:activity, activity) }
 
   it "displays activity name" do
     expect(render).to match /#{activity.name}/

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "UsersController", type: :routing do
+RSpec.describe "UsersController" do
   describe "routing" do
     it "routes to devise/sessions#new" do
       expect(get: "/users/sign_in").to route_to("devise/sessions#new")

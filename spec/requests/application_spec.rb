@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Application", type: :request do
+RSpec.describe "Application" do
   let(:user) { create :user, password: "123456" }
 
   RSpec.shared_examples "anon_user" do |verb|
@@ -12,10 +12,11 @@ RSpec.describe "Application", type: :request do
 
   describe "GET /index" do
     let(:route) { root_path }
-    include_examples "anon_user", :get
 
-    context "for authenticated user" do
-      before(:each) { sign_in(user) }
+    it_behaves_like "anon_user", :get
+
+    context "with authenticated user" do
+      before { sign_in(user) }
 
       context "with empty db" do
         it "returns 200 status" do
@@ -41,6 +42,5 @@ RSpec.describe "Application", type: :request do
         end
       end
     end
-
   end
 end

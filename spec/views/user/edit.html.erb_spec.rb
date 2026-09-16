@@ -1,17 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'user/edit', type: :view do
+RSpec.describe 'user/edit' do
   let(:user) { create(:user) }
 
-  before do(:each)
-    assign(:user, user)
-  end
+  before { assign(:user, user) }
 
   it "renders the edit form" do
-    expect(render).to have_selector("form[action='#{update_user_path}']")
+    expect(render).to have_field("form[action='#{update_user_path}']")
   end
 
   it "renders input for name" do
-    expect(render).to have_selector("input[type=text][id=user_name]")
+    expect(render).to have_field("input[type=text][id=user_name]")
   end
 end

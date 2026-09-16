@@ -1,7 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "Activities", type: :feature do
+RSpec.describe "Activities" do
   let(:user) { create :user }
+
   before { sign_in(user) }
 
   scenario "user creates new activity from root" do
@@ -26,6 +27,7 @@ RSpec.describe "Activities", type: :feature do
 
   context "with an activity" do
     let(:activity) { create :activity, user: user }
+
     before do
       activity
       visit root_path
@@ -34,8 +36,8 @@ RSpec.describe "Activities", type: :feature do
 
     scenario "user lists activities" do
       click_link "Manage Activities"
-      expect(page).to have_content(activity.name)
-      expect(page).to have_content(activity.description)
+      expect(page).to have_text(activity.name)
+      expect(page).to have_text(activity.description)
     end
 
     scenario "user edits an activity" do
@@ -77,24 +79,24 @@ RSpec.describe "Activities", type: :feature do
     end
   end
 
-  context "JS" do
-
+  context "with JS" do
     context "with an activity" do
       let(:activity) { create :activity, user: user }
+
       before do
         Capybara.current_driver = :selenium
         activity
         visit root_path
       end
+
       after { Capybara.use_default_driver }
 
       scenario "user deletes an activity" do
         find('div#trigger-user-options').click
         click_link "Manage Activities"
         accept_confirm { click_button "Destroy" }
-        expect(Activity.where(id: activity.id).take).to eq(nil)
+        expect(Activity.where(id: activity.id).take).to be_nil
       end
     end
-
   end
 end

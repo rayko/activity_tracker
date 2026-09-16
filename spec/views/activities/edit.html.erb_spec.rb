@@ -1,18 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "activities/edit", type: :view do
-  let(:activity) {
-    Activity.create!()
-  }
+  let(:activity) { create :activity }
 
   before(:each) do
     assign(:activity, activity)
   end
 
   it "renders the edit activity form" do
-    render
+    expect(render).to have_selector("form[action='/activities/#{activity.id}']")
+  end
 
-    assert_select "form[action=?][method=?]", activity_path(activity), "post" do
-    end
+  it "renders input for name" do
+    expect(render).to have_selector("input[type=text][id=activity_name]")
+  end
+
+  it "renders input for description" do
+    expect(render).to have_selector("textarea[id=activity_description]")
   end
 end

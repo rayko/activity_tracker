@@ -15,12 +15,12 @@
 
     <div class="flex flex-row my-5">
       <%= form.label :name, class: "w-1/4  p-2 text-right" %>
-      <%= form.text_field :name, class: "ml-3 border-1 rounded-md border-gray-600 bg-white w-2/4" %>
+      <%= form.text_field :name, autofocus: true, class: "p-2 caret-black ml-3 border-1 rounded-md border-gray-600 bg-white w-2/4" %>
     </div>
 
     <div class="flex flex-row my-5">
       <%= form.label :description, class: "w-1/4 p-2 text-right" %>
-      <%= form.text_area :description, rows: 3, class: "ml-3 border-1 bg-white rounded-md border-gray-600 w-2/4" %>
+      <%= form.text_area :description, rows: 3, class: "p-2 ml-3 border-1 bg-white rounded-md border-gray-600 w-2/4" %>
     </div>
 
     <hr class="my-3 border-gray-400" />

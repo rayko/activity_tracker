@@ -19,14 +19,14 @@ RSpec.describe "devise/sessions/new" do
   end
 
   it "renders the edit activity form" do
-    expect(rendered).to have_field("form[action='#{user_session_path}']")
+    expect(rendered).to have_css("form[action='#{user_session_path}']")
   end
 
   it "renders input for email" do
-    expect(rendered).to have_field("input[type=email][id=user_email]")
+    expect(rendered).to have_field("user_email")
   end
 
   it "renders input for password" do
-    expect(rendered).to have_field("input[type=password][id=user_password]")
+    expect(rendered).to have_field("user_password")
   end
 end

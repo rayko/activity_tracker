@@ -7,8 +7,15 @@ export default defineConfig({
   resolve: {
     alias: {
       '@assets': resolve(import.meta.dirname, 'app/assets'),
-      '@controllers': resolve(import.meta.dirname, 'app/javascript/controllers')
+      '@controllers': resolve(import.meta.dirname, 'app/javascript/controllers'),
+      '@views': resolve(import.meta.dirname, 'app/views')
     },
+  },
+  css: {
+    transformer: 'postcss',
+  },
+  build: {
+    cssMinify: 'esbuild',
   },
   plugins: [
     RubyPlugin(),

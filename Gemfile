@@ -29,11 +29,11 @@ group :development, :test do
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
   gem "factory_bot_rails"
+  gem "rspec-rails"
 end
 
 group :development do
   gem "web-console"
-  gem "rspec-rails"
 end
 
 group :test do

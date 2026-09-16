@@ -9,6 +9,9 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
 
+# Use modern assets stuff
+gem 'vite_rails'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 

@@ -6,7 +6,8 @@ import RubyPlugin from 'vite-plugin-ruby'
 export default defineConfig({
   resolve: {
     alias: {
-      '@assets': resolve(__dirname, 'app/assets'),
+      '@assets': resolve(import.meta.dirname, 'app/assets'),
+      '@controllers': resolve(import.meta.dirname, 'app/javascript/controllers')
     },
   },
   plugins: [

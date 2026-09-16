@@ -23,6 +23,7 @@ function openDropDown(trigger) {
   if (targetEl) {
     targetEl.classList.toggle("hidden");
     trigger.classList.toggle("bg-sky-600");
+    trigger.classList.toggle("rounded-sm");
   }
 }
 

@@ -6,17 +6,10 @@ RSpec.describe "/activities" do
 
   before { activity }
 
-  RSpec.shared_examples "anon_user" do |verb|
-    it "redirects to login path when not logged in" do
-      send(verb, route)
-      expect(response).to redirect_to(new_user_session_path)
-    end
-  end
-
   describe "POST /register_hit" do
     let(:route) { register_hit_activity_path(activity) }
 
-    it_behaves_like "anon_user", :post
+    it_behaves_like "anon_user_request", :post
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -45,7 +38,7 @@ RSpec.describe "/activities" do
   describe "POST /unregister_hit" do
     let(:route) { unregister_hit_activity_path(activity) }
 
-    it_behaves_like "anon_user", :post
+    it_behaves_like "anon_user_request", :post
 
     context "with authenticated user" do
       let(:hit) { activity.activity_hits.create!(date: DateTime.now) }
@@ -74,7 +67,7 @@ RSpec.describe "/activities" do
   describe "GET /index" do
     let(:route) { activities_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -89,7 +82,7 @@ RSpec.describe "/activities" do
   describe "GET /show" do
     let(:route) { activity_path(activity) }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -104,7 +97,7 @@ RSpec.describe "/activities" do
   describe "GET /new" do
     let(:route) { new_activity_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -119,7 +112,7 @@ RSpec.describe "/activities" do
   describe "GET /edit" do
     let(:route) { edit_activity_path(activity) }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -135,7 +128,7 @@ RSpec.describe "/activities" do
     let(:route) { activities_path }
     let(:form_data) { { activity: { name: "Test" } } }
 
-    it_behaves_like "anon_user", :post
+    it_behaves_like "anon_user_request", :post
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -165,7 +158,7 @@ RSpec.describe "/activities" do
   describe "PATCH /update" do
     let(:route) { activity_path(activity) }
 
-    it_behaves_like "anon_user", :patch
+    it_behaves_like "anon_user_request", :patch
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -191,7 +184,7 @@ RSpec.describe "/activities" do
   describe "DELETE /destroy" do
     let(:route) { activity_path(activity) }
 
-    it_behaves_like "anon_user", :delete
+    it_behaves_like "anon_user_request", :delete
 
     context "with authenticated user" do
       before { sign_in(user) }

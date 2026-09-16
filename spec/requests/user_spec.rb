@@ -3,17 +3,10 @@ require "rails_helper"
 RSpec.describe "Users" do
   let(:user) { create :user, password: "123456" }
 
-  RSpec.shared_examples "anon_user" do |verb|
-    it "redirects to login path when not logged in" do
-      send(verb, route)
-      expect(response).to redirect_to(new_user_session_path)
-    end
-  end
-
   describe "GET /index" do
     let(:route) { user_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -28,7 +21,7 @@ RSpec.describe "Users" do
   describe "GET /edit" do
     let(:route) { edit_user_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -43,7 +36,7 @@ RSpec.describe "Users" do
   describe "GET /edit_password" do
     let(:route) { edit_user_password_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -58,7 +51,7 @@ RSpec.describe "Users" do
   describe "PUT /update" do
     let(:route) { update_user_path }
 
-    it_behaves_like "anon_user", :put
+    it_behaves_like "anon_user_request", :put
 
     context "with authenticated user" do
       before { sign_in(user) }
@@ -94,7 +87,7 @@ RSpec.describe "Users" do
       }
     end
 
-    it_behaves_like "anon_user", :put
+    it_behaves_like "anon_user_request", :put
 
     context "with authenticated user" do
       before { sign_in(user) }

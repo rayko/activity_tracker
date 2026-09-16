@@ -3,17 +3,10 @@ require "rails_helper"
 RSpec.describe "Application" do
   let(:user) { create :user, password: "123456" }
 
-  RSpec.shared_examples "anon_user" do |verb|
-    it "redirects to login path when not logged in" do
-      send(verb, route)
-      expect(response).to redirect_to(new_user_session_path)
-    end
-  end
-
   describe "GET /index" do
     let(:route) { root_path }
 
-    it_behaves_like "anon_user", :get
+    it_behaves_like "anon_user_request", :get
 
     context "with authenticated user" do
       before { sign_in(user) }

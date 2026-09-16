@@ -47,3 +47,4 @@ node_modules
 todos.json
 
 coverage/*
+.project-commands

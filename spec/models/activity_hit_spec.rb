@@ -35,7 +35,7 @@ RSpec.describe ActivityHit do
     end
 
     it "returns hits today" do
-      expect(subject).to be([ todays_hit.id ])
+      expect(subject).to eq([ todays_hit.id ])
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe ActivityHit do
     end
 
     it "returns hits for this month" do
-      expect(subject).to be([ todays_hit.id ])
+      expect(subject).to eq([ todays_hit.id ])
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe ActivityHit do
     end
 
     it "returns hits for past month" do
-      expect(subject).to be([ past_month_hit.id ])
+      expect(subject).to eq([ past_month_hit.id ])
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe ActivityHit do
     end
 
     it "returns hits for past 8 hours" do
-      expect(subject).to be([ recent.id ])
+      expect(subject).to eq([ recent.id ])
     end
   end
 end

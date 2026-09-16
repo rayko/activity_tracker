@@ -4,7 +4,9 @@
       <% current_user.activities.each do |activity| %>
       <tr class="shadow-md shadow-gray-500 bg-slate-200">
         <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300">
-          <span title="<%= activity.description %>" ><%= activity.name %></span>
+          <span title="<%= activity.description %>" >
+            <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
+          </span>
         </td>
 
         <td class="activity-hits p-2 w-full "> || </td>

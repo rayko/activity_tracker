@@ -1,2 +1,25 @@
-<div id="<%= dom_id activity %>">
+<div  id="<%= dom_id activity %>" class="p-2 text-left">
+
+  <div class="flex flex-row my-5">
+    <div class="w-1/4  p-2 text-right">Name</div>
+    <div class="ml-3 border-l border-l-gray-400 p-2 w-2/4">
+      <%= @activity.name %>
+    </div>
+  </div>
+
+  <div class="flex flex-row my-5">
+    <div class="w-1/4  p-2 text-right">Description</div>
+    <div class="ml-3 border-l border-l-gray-400 p-2 w-2/4">
+      <%= @activity.description %>
+    </div>
+  </div>
+
+  <hr class="my-3 border-gray-400" />
+  
+  <div class="flex flex-row">
+    <div class="m-auto"><%= link_to "Edit", edit_activity_path(@activity), class: regular_btn_class %></div>
+    <div class="m-auto"><%= button_to "Destroy", @activity, method: :delete, class: regular_red_btn_class %></div>
+  </div>
+
+
 </div>

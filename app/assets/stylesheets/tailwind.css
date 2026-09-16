@@ -1,6 +1,4 @@
-@import "tailwindcss" source("../../views") source("../../helpers");
-
-/* No matter what, these don't work at all, @source is broken */
-/* @source "../views/\\**\/\\*.erb"; */
-/* @source "views/\\**\\/\\*.rb"; */
-/* @source "helpers/\\**\\/\\*.rb"; */
+@import "tailwindcss";
+@source "../../views";
+@source "../../lib/form_builders";
+@source "../../helpers";

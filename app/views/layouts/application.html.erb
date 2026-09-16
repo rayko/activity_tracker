@@ -26,7 +26,7 @@
     <% if user_signed_in?  %>
       <nav class="flex flex-row p-1 items-center bg-linear-to-t from-gray-400 to-gray-50 border-b-1 border-b-gray-400">
         <div class="flex flex-row items-center">
-          <span>Logo</span>
+          <span class="max-w-8"><%= vite_image_tag "images/logo.svg" %></span>
           <div class="title mx-2 text-slate-500 text-shadow-md/15 italic">
             <%= link_to "Activity Tracker", root_path %>
           </div>

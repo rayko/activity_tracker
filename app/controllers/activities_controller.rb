@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: %i[ show edit update destroy register_hit unregister_hit]
+  before_action :set_activity, only: %i[ show edit update destroy register_hit unregister_hit ]
 
   def register_hit
     respond_to do |format|
@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
         format.html { redirect_to root_path, alert: "Already registered today" }
         format.json { render json: {error: "Already registered today"}, status: :unprocessable_content }
       else
-        @activity.activity_hits.create!(date: Date.today)
+        @activity.activity_hits.create!(date: DateTime.now)
         format.html { redirect_to root_path, notice: "Registered hit" }
         format.json { render :show, status: :created, location: @activity }
       end

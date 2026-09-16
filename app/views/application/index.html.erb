@@ -1,20 +1,17 @@
-
 <div class="activity-list mb-5">
-  <table class="table-auto w-full text-xl">
+  <table class="table-auto w-full text-sm sm:text-lg border-separate border-spacing-y-4 ">
     <tbody>
       <% current_user.activities.each do |activity| %>
-      <tr class="border-b">
-        <td class="activity-name py-2">
-
+      <tr class="shadow-md shadow-gray-500 bg-slate-200">
+        <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300">
           <span title="<%= activity.description %>" ><%= activity.name %></span>
-
         </td>
 
-        <td class="activity-hits py-2"> || </td>
+        <td class="activity-hits p-2 w-full "> || </td>
 
-        <td class="activity-actions py-2">
+        <td class="activity-actions p-2">
           <span>
-            <%= link_to "+", "#", class: "inline-block mx-2 rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300 px-3 py-1 hover:shadow-lg/35 hover:shadow-gray-800 text-shadow-md/30" %>
+            <%= link_to "+", "#", class: regular_btn_class %>
           </span>
         </td>
       </tr>
@@ -24,8 +21,6 @@
   </table>
 </div>
 
-<div>
-  <span>
-    <%= link_to "New activity", new_activity_path, class: "text-blue-600" %>
-  </span>
+<div class="w-50">
+  <%= link_to "New activity", new_activity_path, class: regular_btn_class %>
 </div>

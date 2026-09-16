@@ -19,5 +19,5 @@
     }
   },
 
-  "postCreateCommand": "echo \"Env up, install deps and bake assets\""
+  "postCreateCommand": "bin/setup --skip-server"
 }

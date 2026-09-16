@@ -33,11 +33,26 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if user_signed_in?  %>
+      <h1>Activity Tracker</h1>
+      <%= yield %>
+    <% else %>
+      <div class="grid h-screen place-items-center w-full bg-gray-100 p-0 m-0">
+        <%- if notice  %>
+          <div class="notice bg-green-300 w-1/2 p-1 text-center text-[1.2em] shadow-md rounded-sm shadow-green-400/50 text-green-700 text-shadow-xs">
+            <%= notice %>
+          </div>
+        <% end %>
 
-    <h1 class="bg-fuchsia-600">Activity Tracker</h1>
+        <%- if alert  %>
+          <div class="alert notice bg-orange-300 w-1/2 p-1 text-center text-[1.2em] shadow-md rounded-sm shadow-orange-400/50 text-orange-800 text-shadow-xs" >
+            <%= alert %>
+          </div>
+        <% end %>
 
-    <%= yield %>
+        <%= yield %>
+
+      </div>
+    <% end %>
   </body>
 </html>

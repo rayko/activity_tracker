@@ -1,9 +1,9 @@
 <div class="activity-list mb-5">
-  <table class="table-auto w-full text-sm sm:text-lg border-separate border-spacing-y-4 border-spacing-x-4 ">
+  <table class="table-auto w-full text-sm md:text-lg border-separate border-spacing-y-4 border-spacing-x-4 ">
     <thead>
       <tr>
         <th></th>
-        <th><%= month_name(1.month.ago) %></th>
+        <th class="hidden md:block" ><%= month_name(1.month.ago) %></th>
         <th><%= month_name(Date.today) %></th>
         <th></th>
       </tr>
@@ -18,7 +18,7 @@
           </span>
         </td>
 
-        <td class="activity-hits bg-slate-200 p-2 shadow-md shadow-gray-500">
+        <td class="activity-hits bg-slate-200 p-2 shadow-md shadow-gray-500 hidden md:table-cell">
           <%= render partial: "activities/box_tally", locals: { tally: @hits_past_month[activity.id] } %>
         </td>
 

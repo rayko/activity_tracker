@@ -5,7 +5,6 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 gem "turbo-rails"
 gem "stimulus-rails"
-gem "jbuilder"
 
 # Use modern assets stuff
 gem 'vite_rails'

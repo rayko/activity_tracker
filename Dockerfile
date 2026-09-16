@@ -25,6 +25,7 @@ RUN apt-get update -qq && \
 
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
+    BIND="0.0.0.0" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development test" \

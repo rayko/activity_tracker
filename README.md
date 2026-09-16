@@ -21,7 +21,7 @@ be added via console for the time being.
 
 Create the stack:
 
-Clone the project, copy `production.env.sample` onto a `production.env` file
+Clone the project, copy `.env.production.sample` onto a `.env.production` file
 and fill in with desired values. You can use postgres defaults for database.
 Build the containers:
 

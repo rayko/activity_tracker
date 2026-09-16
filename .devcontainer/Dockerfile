@@ -22,8 +22,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 WORKDIR /workspace
 USER $USERNAME
 
-ENV NVM_DIR /home/$USERNAME/.nvm
-ENV NODE_VERSION 24.20.0
+ENV NVM_DIR="/home/$USERNAME/.nvm"
+ENV NODE_VERSION="24.20.0"
+ENV BIND="0.0.0.0"
 
 # Download and install nvm:
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash - \

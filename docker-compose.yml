@@ -14,7 +14,7 @@ services:
     build: .
     image: activity_tracker:v0.0.1
     restart: always
-    env_file: production.env
+    env_file: .env.production
     command: bundle exec puma -C config/puma.rb
     healthcheck:
       test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/up || exit 1']

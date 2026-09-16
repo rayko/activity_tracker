@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: %i[ show edit update destroy register_hit unregister_hit ]
 
   def register_hit
-    if @activity.activity_hits.today.any?
+    if @activity.activity_hits.recent.any?
       flash[:alert] = "Already registered today"
     else
       @activity.activity_hits.create!(date: DateTime.now)
@@ -12,10 +12,10 @@ class ActivitiesController < ApplicationController
   end
 
   def unregister_hit
-    if !@activity.activity_hits.today.any?
+    if !@activity.activity_hits.recent.any?
       flash[:alert] = "No hits today"
     else
-      @activity.activity_hits.today.take.destroy
+      @activity.activity_hits.recent.take.destroy
       flash[:notice] = "Unregistered hit"
     end
     redirect_to root_path

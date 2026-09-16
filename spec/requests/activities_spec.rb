@@ -29,10 +29,15 @@ RSpec.describe "/activities", type: :request do
       end
 
       it "does not create more than 1 hit on the same day" do
-        activity.activity_hits.create!(date: 2.days.ago)
-        post route
+        activity.activity_hits.create!(date: 1.hour.ago)
         expect { post route }.to change(activity.activity_hits, :count).by(0)
       end
+
+      it "can create hit after 8 hours from last one" do
+        activity.activity_hits.create!(date: 9.hours.ago)
+        expect { post route }.to change(activity.activity_hits, :count).by(1)
+      end
+
     end
   end
 

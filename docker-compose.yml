@@ -1,0 +1,26 @@
+services:
+  db:
+    restart: always
+    image: postgres:15-trixie
+    shm_size: 256mb
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+    volumes:
+      - ./storage/postgres_data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+
+  web:
+    build: .
+    image: activity_tracker:v0.0.1
+    restart: always
+    env_file: production.env
+    command: bundle exec puma -C config/puma.rb
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/up || exit 1']
+    ports:
+      - "127.0.0.1:5001:3000"
+    depends_on:
+      - db
+    volumes:
+      - ./storage/app_data:/rails/tmp/app_data

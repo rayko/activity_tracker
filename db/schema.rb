@@ -22,7 +22,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_07_161513) do
   create_table "activity_hits", force: :cascade do |t|
     t.integer "activity_id"
     t.datetime "created_at", null: false
-    t.date "date"
+    t.datetime "date"
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_activity_hits_on_activity_id"
     t.index ["date"], name: "index_activity_hits_on_date"

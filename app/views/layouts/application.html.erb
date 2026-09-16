@@ -33,16 +33,15 @@
         </div>
         <div class="flex-grow"></div>
         <div class="flex flex-row items-center">
-          <div class="dropdown-trigger" data-target-id="user-options-dropdown">
+          <div class="dropdown-trigger" id="trigger-user-options" data-target-id="user-options-dropdown">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </div>
           <div id="user-options-dropdown" class="hidden block text-center z-100 absolute top-12 right-2 w-1/8 border-1 border-gray-300 bg-gray-100">
             <%= link_to "Account", user_path, class: "block text-sky-700 p-2 border-b border-gray-400 hover:text-white hover:bg-sky-600" %>
-            <%= link_to "Manage Activities", activities_path, class: "block text-sky-700 p-2 border-b border-gray-400 hover:text-white hover:bg-sky-600" %>            
+            <%= link_to "Manage Activities", activities_path, class: "block text-sky-700 p-2 border-b border-gray-400 hover:text-white hover:bg-sky-600" %>
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "cursor-pointer text-sky-700 block p-2 hover:text-white hover:bg-sky-600 w-full" %>
-            
           </div>
         </div>
       </nav>

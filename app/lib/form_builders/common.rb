@@ -35,13 +35,6 @@ module FormBuilders
       end
     end
 
-    def email_field(method, options = {})
-      opts = { class: _txt_class(method) }.merge(options)
-      box_field_container(method) do
-        @template.email_field(@object_name, method, objectify_options(opts))
-      end
-    end
-
     def password_field(method, options = {})
       opts = { class: _txt_class(method) }.merge(options)
       box_field_container(method) do
@@ -66,7 +59,7 @@ module FormBuilders
 
     # Typical input with label and a box field (even text area)
     def box_field_container(method)
-      @template.content_tag(:div, class: "flex flex-row my-5") do      
+      @template.content_tag(:div, class: "flex flex-row my-5") do
         input_label(method) +
         @template.content_tag(:div, class: "w-3/4") do
           output = yield

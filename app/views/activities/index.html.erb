@@ -8,32 +8,32 @@
         <th class="p-2">Actions</th>
       </tr>
     </thead>
-    
+
     <tbody>
       <% @activities.each do |activity| %>
-      
-      <tr class="bg-slate-100 border-b-2 border-gray-300">
-        <td class="p-2 text-center">
-          <%= activity.id %>
-        </td>        
 
-        <td class="p-2 ">
-          <span title="<%= activity.description %>" >
-            <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
-          </span>
-        </td>
+        <tr class="bg-slate-100 border-b-2 border-gray-300">
+          <td class="p-2 text-center">
+            <%= activity.id %>
+          </td>
 
-        <td class="p-2">
-          <%= activity.description %>
-        </td>
+          <td class="p-2 ">
+            <span title="<%= activity.description %>" >
+              <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
+            </span>
+          </td>
 
-        <td class="p-2">
-          <div class="flex flex-row">
-            <%= link_to "Edit", edit_activity_path(activity), class: regular_btn_class %>
-            <%= button_to "Destroy", activity_path(activity), method: :delete, class: regular_red_btn_class %>
-          </div>
-        </td>
-      </tr>
+          <td class="p-2">
+            <%= activity.description %>
+          </td>
+
+          <td class="p-2">
+            <div class="flex flex-row">
+              <%= link_to "Edit", edit_activity_path(activity), class: regular_btn_class %>
+              <%= button_to "Destroy", activity_path(activity), method: :delete, class: regular_red_btn_class, form: { data: { turbo_confirm: "Are you sure?" } } %>
+            </div>
+          </td>
+        </tr>
       <% end %>
 
     </tbody>
@@ -43,5 +43,3 @@
 <div class="w-50">
   <%= link_to "New activity", new_activity_path, class: regular_btn_class %>
 </div>
-
-

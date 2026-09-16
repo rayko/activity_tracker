@@ -340,12 +340,6 @@ GEM
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     simplecov (1.2.0)
-    sqlite3 (2.9.6-aarch64-linux-gnu)
-    sqlite3 (2.9.6-aarch64-linux-musl)
-    sqlite3 (2.9.6-arm-linux-gnu)
-    sqlite3 (2.9.6-arm-linux-musl)
-    sqlite3 (2.9.6-x86_64-linux-gnu)
-    sqlite3 (2.9.6-x86_64-linux-musl)
     sshkit (1.25.1)
       base64
       logger
@@ -427,7 +421,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   selenium-webdriver
   simplecov
-  sqlite3 (>= 2.1)
   stimulus-rails
   thruster
   turbo-rails

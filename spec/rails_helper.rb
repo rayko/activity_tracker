@@ -1,18 +1,23 @@
 require 'simplecov'
 SimpleCov.start do
-  # enable_coverage :branch            # track branches as well as lines
-  cover "{app,lib}/**/*.rb"          # report on these files, even if never loaded
-  group "Models", "app/models"       # organize the report into groups
-  group "Controllers", "app/controllers"       # organize the report into groups
-  group "Views", "app/views"       # organize the report into groups
+  load_profile "test_frameworks"
+  cover_views
 
-  # coverage :line do
-  #   minimum      90                  # fail the suite below 90% line coverage
-  #   maximum_drop 1                   # ...or when coverage drops more than 1%
-  #   maximum_missed 5, per: :file     # no file may carry more than 5 uncovered lines
-  # end
+  skip %r{\Aconfig/}
+  skip %r{\Adb/}
 
-  # coverage :branch, minimum: 80, ignore: :implicit_else
+  group "Controllers", "app/controllers"
+  # group "Channels", "app/channels"
+  group "Models", "app/models"
+  # group "Mailers", "app/mailers"
+  group "Helpers", "app/helpers"
+  group "Views", "app/views"
+  # group "Jobs", %w[app/jobs app/workers]
+  group "Libraries", "lib/"
+
+  @tracked_files = "{app,lib}/**/*.rb"
+
+  merge_subprocesses true
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

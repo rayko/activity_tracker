@@ -2,7 +2,6 @@ module FormBuilders
   # Common form builder to build most of them in the app, with the same baseline
   # styling.
   class Common < ActionView::Helpers::FormBuilder
-
     def text_field(method, options = {})
       opts = { class: _txt_class(method) }.merge(options)
       box_field_container(method) do
@@ -45,15 +44,15 @@ module FormBuilders
     private
 
     def field_errors?(method)
-      @object.errors.select{ |err| err.attribute == method }.any?
+      @object.errors.select { |err| err.attribute == method }.any?
     end
 
     def field_errors(method)
-      messages = @object.errors.select{ |err| err.attribute == method }.map(&:message)
+      messages = @object.errors.select { |err| err.attribute == method }.map(&:message)
       return "" if messages.empty?
 
       @template.content_tag(:div, class: "text-red-500 italic px-4") do
-        messages.join(', ')
+        messages.join(", ")
       end
     end
 
@@ -73,9 +72,9 @@ module FormBuilders
     end
 
     def _txt_class(method)
-      css = %w[p-2 caret-black ml-3 border-1 rounded-md border-gray-600 bg-white w-3/4]
+      css = %w(p-2 caret-black ml-3 border-1 rounded-md border-gray-600 bg-white w-3/4)
       css << (field_errors?(method) ? "border-red-600 focus:outline-red-400" : "border-gray-600")
-      css.join(' ')
+      css.join(" ")
     end
 
     def input_label(method)
@@ -83,6 +82,5 @@ module FormBuilders
         @template.label(@object_name, method)
       end
     end
-
   end
 end

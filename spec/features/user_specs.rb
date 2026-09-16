@@ -1,15 +1,16 @@
 require "rails_helper"
 
-RSpec.describe "User", type: :feature do
+RSpec.describe "User" do
   let(:user) { create :user, password: "123456" }
+
   before { sign_in(user) }
 
   scenario "user views account" do
     visit root_path
     find('div#trigger-user-options').click
     click_link "Account"
-    expect(page).to have_content(user.name)
-    expect(page).to have_content(user.email)
+    expect(page).to have_text(user.name)
+    expect(page).to have_text(user.email)
   end
 
   scenario "user edits name" do
@@ -32,7 +33,7 @@ RSpec.describe "User", type: :feature do
     fill_in "user_password", with: "456789"
     fill_in "user_password_confirmation", with: "456789"
     click_button "Save"
-    expect(user.reload.encrypted_password).not_to eq(original)
+    expect(user.reload.encrypted_password).to_not eq(original)
   end
 
   scenario "user cannot update password with wrong current one" do

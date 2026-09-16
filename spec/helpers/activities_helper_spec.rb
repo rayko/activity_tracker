@@ -11,5 +11,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ActivitiesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#activity_hits_display" do
+    let(:activity) do
+      record = create :activity
+      create :activity_hit, activity: record, date: 3.days.ago
+      create :activity_hit, activity: record, date: 2.days.ago
+      create :activity_hit, activity: record, date: 1.days.ago
+      record
+    end
+
+    it "returns expected string" do
+      expect(helper.activity_hits_display(activity)).to eq("|||")
+    end
+
+  end
 end

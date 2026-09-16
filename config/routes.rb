@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     get :edit, to: "user#edit", as: :edit_user
     get :edit_password, to: "user#edit_password", as: :edit_user_password
     put :update, to: "user#update", as: :update_user
-    put :update_pssword, to: "user#update_password", as: :update_user_password
+    put :update_password, to: "user#update_password", as: :update_user_password
   end
 
   resources :activities do

@@ -34,5 +34,13 @@ RSpec.describe ActivitiesController, type: :routing do
     it "routes to #destroy" do
       expect(delete: "/activities/1").to route_to("activities#destroy", id: "1")
     end
+
+    it "routes to #register_hit" do
+      expect(post: "/activities/1/register_hit").to route_to("activities#register_hit", id: "1")
+    end
+
+    it "routes to #unregister_hit" do
+      expect(post: "/activities/1/unregister_hit").to route_to("activities#unregister_hit", id: "1")
+    end
   end
 end

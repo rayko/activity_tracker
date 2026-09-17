@@ -1,7 +1,7 @@
-<div class="w-2/6 bg-gray-200 m-auto rounded-md shadow-lg/30 text-center">
+<%= box_container do %>
   <div class="bg-gray-300 rounded-t-md py-2 text-lg text-gray-500 shadow-sm/20">
     <%= "#{@activity.id} - #{@activity.name}" %>
   </div>
   <% content_for :title, "Activities - #{@activity.name}" %>
   <%= render  @activity %>
-</div>
+<% end %>

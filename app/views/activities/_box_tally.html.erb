@@ -4,10 +4,10 @@
     <% rest = tally % 5 %>
     <% sets = tally / 5 %>
     <% sets.times do %>
-      <%= vite_image_tag "images/boxTally5.svg", class: "p-2 block-7 md:block-10" %>
+      <%= vite_image_tag "images/boxTally5.svg", class: "p-1 block-6 md:block-10" %>
     <% end %>
     <% if rest > 0 %>
-      <%= vite_image_tag "images/boxTally#{rest}.svg", class: "p-2 block-7 md:block-10"  %>
+      <%= vite_image_tag "images/boxTally#{rest}.svg", class: "p-1 block-6 md:block-10"  %>
     <% end %>
   </div>
 <% end %>

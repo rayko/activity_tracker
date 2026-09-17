@@ -27,10 +27,10 @@
           <%= render partial: "activities/box_tally", locals: { tally: @hits_this_month[activity.id] } %>
         </td>
 
-        <td class="activity-actions p-2 w-px">
-          <div class="flex flex-wrap">
-            <%= button_to "+", register_hit_activity_path(activity), method: :post, class: "cursor-pointer text-center w-8 m-1 rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300  hover:outline-2 hover:outline-sky-500 text-shadow-md/30" %>
-            <%= button_to "-", unregister_hit_activity_path(activity), method: :post, class: "cursor-pointer text-center w-8 m-1 rounded-md bg-linear-to-t from-red-700 to-red-400 text-gray-200 font-bold outline-red-300  hover:outline-2 hover:outline-red-500 text-shadow-md/30" %>
+        <td class="activity-actions w-px">
+          <div class="flex flex-row">
+            <%= button_to "+", register_hit_activity_path(activity), method: :post, class: "cursor-pointer text-center w-5 m-1 md:w-8 md:h-8 rounded-md bg-linear-to-t from-sky-700 to-blue-400 text-gray-200 font-bold outline-indigo-300  hover:outline-2 hover:outline-sky-500 text-shadow-md/30" %>
+            <%= button_to "-", unregister_hit_activity_path(activity), method: :post, class: "cursor-pointer text-center w-5 m-1 md:w-8 md:h-8 rounded-md bg-linear-to-t from-red-700 to-red-400 text-gray-200 font-bold outline-red-300  hover:outline-2 hover:outline-red-500 text-shadow-md/30" %>
           </div>
         </td>
       </tr>

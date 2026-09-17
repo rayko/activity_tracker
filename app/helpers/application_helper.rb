@@ -24,4 +24,10 @@ module ApplicationHelper
       link_to text, target, class: blue_btn_class
     end
   end
+
+  def box_container(&block)
+    content_tag(:div, class: "text-sm md:text-md md:w-150 bg-gray-200 m-auto rounded-md shadow-lg/30 text-center") do
+      yield
+    end
+  end
 end

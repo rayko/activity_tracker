@@ -1,5 +1,5 @@
 <div class="activity-list mb-5">
-  <table class="table-auto w-full text-sm md:text-lg border-separate border-spacing-y-4 border-spacing-x-4 ">
+  <table class="table-auto w-full text-sm md:text-lg border-collapse border-spacing-y-4 border-spacing-x-4 md:border-separate">
     <thead>
       <tr>
         <th></th>
@@ -11,19 +11,19 @@
 
     <tbody>
       <% @activities.each do |activity| %>
-      <tr class="">
-        <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300 shadow-md shadow-gray-500 w-px">
+      <tr class="border-b border-b-gray-300 md:border-b-0">
+        <td class="activity-name p-2 bg-slate-300 text-nowrap border-r-3 border-r-gray-300 md:shadow-md md:shadow-gray-500 w-px">
           <span title="<%= activity.description %>" >
             <%= link_to activity.name, activity_path(activity), class: "text-sky-700" %>
           </span>
         </td>
 
-        <td class="activity-hits bg-slate-200 p-2 shadow-md shadow-gray-500 hidden md:table-cell">
+        <td class="activity-hits bg-slate-200 p-2 md:shadow-md md:shadow-gray-500 hidden md:table-cell">
           <%= render partial: "activities/box_tally", locals: { tally: @hits_past_month[activity.id] } %>
         </td>
 
 
-        <td class="activity-hits p-2 bg-slate-200 shadow-md shadow-gray-500">
+        <td class="activity-hits p-2 bg-slate-200 md:shadow-md md:shadow-gray-500">
           <%= render partial: "activities/box_tally", locals: { tally: @hits_this_month[activity.id] } %>
         </td>
 

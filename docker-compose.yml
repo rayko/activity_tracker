@@ -12,7 +12,7 @@ services:
 
   web:
     build: .
-    image: activity_tracker:v0.0.1
+    image: activity_tracker:v0.0.3
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb

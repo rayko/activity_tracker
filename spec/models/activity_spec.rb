@@ -22,6 +22,17 @@ RSpec.describe Activity do
       expect(subject.valid?).to be(false)
     end
 
+    context "with other user with same activity name" do
+      before do
+        usr = create :user
+        usr.activities.create! name: attrs[:name]
+      end
+
+      it "does not collide" do
+        expect(subject.valid?).to be(true)
+      end
+    end
+
     it "is valid with the right fields" do
       expect(subject.valid?).to be(true)
     end

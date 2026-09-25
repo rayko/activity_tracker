@@ -27,7 +27,7 @@ RSpec.describe Activity do
         usr = create :user
         usr.activities.create! name: attrs[:name]
       end
-      
+
       it "does not collide" do
         expect(subject.valid?).to be(true)
       end

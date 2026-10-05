@@ -5,3 +5,12 @@
   <% content_for :title, "Activities - #{@activity.name}" %>
   <%= render  @activity %>
 <% end %>
+
+<%= box_container do %>
+  <div class="mt-10">
+    <div class="bg-gray-300 rounded-t-md py-2 text-lg text-gray-500 shadow-sm/20">
+      Activity Hits
+    </div>
+    <%= render partial: "activity_hits/list", locals: { records: @activity.activity_hits.order("date DESC") } %>
+  </div>
+<% end %>

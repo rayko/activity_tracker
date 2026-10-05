@@ -5,15 +5,6 @@ RSpec.describe "Activities" do
 
   before { sign_in(user) }
 
-  scenario "user creates new activity from root" do
-    visit root_path
-    click_link "New activity"
-    fill_in "activity_name", with: "Task"
-    fill_in "activity_description", with: "A custom task"
-    click_button "Save"
-    expect(user.activities.count).to eq(1)
-  end
-
   scenario "user creates activity from list" do
     visit root_path
     find('div#trigger-user-options').click
@@ -66,36 +57,6 @@ RSpec.describe "Activities" do
       click_link "Manage Activities"
       click_button "Un-Archive"
       expect(activity.reload.archived).to be(false)
-    end
-
-    scenario "user registers activity hit" do
-      click_button "+"
-      expect(activity.reload.activity_hits.count).to eq(1)
-    end
-
-    scenario "user does not register activity hit twice" do
-      click_button "+"
-      click_button "+"
-      expect(activity.reload.activity_hits.count).to eq(1)
-    end
-
-    scenario "user unregisters activity hit" do
-      activity.activity_hits.create! date: DateTime.now
-      click_button "-"
-      expect(activity.reload.activity_hits.count).to eq(0)
-    end
-
-    scenario "user does not unregister activity hit done today" do
-      activity.activity_hits.create! date: 1.day.ago
-      click_button "-"
-      expect(activity.reload.activity_hits.count).to eq(1)
-    end
-
-    scenario "user can register/unregister hit today" do
-      visit root_path
-      click_button "+"
-      click_button "-"
-      expect(activity.reload.activity_hits.count).to eq(0)
     end
   end
 

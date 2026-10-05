@@ -1,6 +1,17 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, except: %i( index new create )
 
+  def archive
+    @activity.archive!
+    flash[:notice] = "Activity archived"
+    redirect_to activities_path
+  end
+
+  def unarchive
+    @activity.unarchive!
+    flash[:notice] = "Activity unarchived"
+    redirect_to activities_path
+  end
 
   def register_hit
     if @activity.activity_hits.recent.any?

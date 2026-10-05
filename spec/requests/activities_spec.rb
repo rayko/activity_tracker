@@ -199,4 +199,35 @@ RSpec.describe "/activities" do
       end
     end
   end
+
+  describe "PATCH /archive" do
+    let(:route) { archive_activity_path(activity) }
+
+    it_behaves_like "anon_user_request", :patch
+
+    context "with authenticated user" do
+      before {sign_in(user) }
+
+      it "archives activity" do
+        patch route
+        expect(activity.reload.archived).to be(true)
+      end
+    end
+  end
+
+  describe "PATCH /unarchive" do
+    let(:route) { unarchive_activity_path(activity) }
+
+    it_behaves_like "anon_user_request", :patch
+
+    context "with authenticated user" do
+      before {sign_in(user) }
+
+      it "unarchives activity" do
+        patch route
+        expect(activity.reload.archived).to be(false)
+      end
+    end
+  end
+  
 end

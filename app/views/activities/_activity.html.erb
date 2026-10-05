@@ -14,11 +14,25 @@
     </div>
   </div>
 
+  <div class="flex flex-row my-5">
+    <div class="w-1/4  p-2 text-right">Status</div>
+    <div class="ml-3 border-l border-l-gray-400 p-2 w-2/4">
+      <%= @activity.archived? ? "Archived" : "Active" %>
+    </div>
+  </div>
+
   <hr class="my-3 border-gray-400" />
 
   <div class="flex flex-row">
+    <% if @activity.archived? %>
+      <div class="m-auto"><%= button_to "Unarchive", unarchive_activity_path(@activity), method: :patch, class: regular_btn_class %></div>
+    <% else %>
+      <div class="m-auto"><%= button_to "Archive", archive_activity_path(@activity), method: :patch, class: regular_btn_class %></div>
+    <% end %>
     <div class="m-auto"><%= link_to "Edit", edit_activity_path(@activity), class: regular_btn_class %></div>
     <div class="m-auto"><%= button_to "Destroy", @activity, method: :delete, class: regular_red_btn_class, data: { turbo_confirm: "Are you sure?" }  %></div>
+    <%= link_to_back %>
   </div>
 
 </div>
+

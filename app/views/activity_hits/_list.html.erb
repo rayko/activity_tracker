@@ -1,0 +1,29 @@
+<div class="activity-list mb-5">
+  <table class="table-auto w-full text-sm sm:text-lg ">
+    <tbody>
+      <% records.each do |hit| %>
+
+        <tr class="bg-slate-100 border-b-2 border-gray-300">
+          <td class="p-2 text-center">
+            <%= hit.id %>
+          </td>
+
+          <td class="p-2">
+            <%= hit.date.strftime("%Y-%m-%d") %>
+          </td>
+
+          <td class="p-2 hidden md:block">
+            <%= time_ago_in_words(hit.date) %> ago
+          </td>
+
+          <td class="p-2  w-px">
+            <div class="flex flex-row">
+              <%= button_to "Destroy", activity_hit_path(hit), method: :delete, class: regular_red_btn_class, form: { data: { turbo_confirm: "Are you sure?" } } %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>

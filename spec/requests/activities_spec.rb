@@ -28,6 +28,11 @@ RSpec.describe "/activities" do
         expect { post route }.to_not change(activity.activity_hits, :count)
       end
 
+      it "does not create hit if activity is archived" do
+        activity.archive!
+        expect { post route }.to_not change(activity.activity_hits, :count)
+      end
+
       it "can create hit after 8 hours from last one" do
         activity.activity_hits.create!(date: 9.hours.ago)
         expect { post route }.to change(activity.activity_hits, :count).by(1)
@@ -59,6 +64,11 @@ RSpec.describe "/activities" do
 
       it "fails if no hits today" do
         post route
+        expect { post route }.to_not change(activity.activity_hits, :count)
+      end
+
+      it "does not remove hit if activity is archived" do
+        activity.archive!
         expect { post route }.to_not change(activity.activity_hits, :count)
       end
     end

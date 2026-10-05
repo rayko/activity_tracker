@@ -16,20 +16,36 @@ class ActivitiesController < ApplicationController
   def register_hit
     if @activity.activity_hits.recent.any?
       flash[:alert] = "Already registered today"
-    else
-      @activity.activity_hits.create!(date: DateTime.now)
-      flash[:notice] = "Registered hit"
+      redirect_to root_path
+      return
     end
+
+    if @activity.archived?
+      flash[:alert] = "Activity is archived"
+      redirect_to root_path
+      return
+    end
+
+    @activity.activity_hits.create!(date: DateTime.now)
+    flash[:notice] = "Registered hit"
     redirect_to root_path
   end
 
   def unregister_hit
     if !@activity.activity_hits.recent.any?
       flash[:alert] = "No hits today"
-    else
-      @activity.activity_hits.recent.take.destroy
-      flash[:notice] = "Unregistered hit"
+      redirect_to root_path
+      return
     end
+
+    if @activity.archived?
+      flash[:alert] = "Activity is archived"
+      redirect_to root_path
+      return
+    end
+
+    @activity.activity_hits.recent.take.destroy
+    flash[:notice] = "Unregistered hit"
     redirect_to root_path
   end
 

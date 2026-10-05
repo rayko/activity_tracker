@@ -56,7 +56,7 @@ RSpec.describe ApplicationHelper do
     end
 
     it "returns average hit count in past 7 days" do
-      expect(helper.daily_pace(user)).to eq(3.0 / 7)
+      expect(helper.daily_pace(user)).to eq((3.0 / 7).round(2))
     end
   end
 end

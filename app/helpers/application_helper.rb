@@ -30,4 +30,9 @@ module ApplicationHelper
       yield
     end
   end
+
+  def daily_pace(user)
+    hits = ActivityHit.where(activity_id: user.activities.map(&:id)).where("date >= ?", 7.days.ago.beginning_of_day).count
+    (hits.to_f / 7).round(2)
+  end
 end

@@ -37,4 +37,26 @@ RSpec.describe ApplicationHelper do
       expect(helper.login_link_btn("Custom", "/somewhere")).to have_link("Custom", href: "/somewhere")
     end
   end
+
+  describe "#daily_pace" do
+    let(:user) { create :user }
+
+    before do
+      other_user = create :user
+      other_act = create :activity, user: other_user
+      create :activity_hit, activity: other_act
+
+      act1 = create :activity, user: user
+      act2 = create :activity, user: user, archived: true
+
+      create :activity_hit, activity: act1, date: 2.days.ago
+      create :activity_hit, activity: act2, date: 1.day.ago
+      create :activity_hit, activity: act1, date: 3.days.ago
+      create :activity_hit, activity: act1, date: 10.days.ago
+    end
+
+    it "returns average hit count in past 7 days" do
+      expect(helper.daily_pace(user)).to eq((3.0 / 7).round(2))
+    end
+  end
 end

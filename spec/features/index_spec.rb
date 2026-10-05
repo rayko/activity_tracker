@@ -31,6 +31,7 @@ RSpec.describe "Index" do
       it("has link to activities index") { expect(page).to have_link(href: activities_path) }
       it("has link to account info") { expect(page).to have_link(href: user_path) }
       it("has logout button") { expect(page).to have_button("Sign out") }
+      it("shows daily pace") { expect(page).to have_text("Pace") }
     end
 
     scenario "user new activity from root" do

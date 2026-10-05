@@ -25,6 +25,31 @@ RSpec.describe "Activities" do
       find('div#trigger-user-options').click
     end
 
+    describe "show page" do
+      before { visit activity_path(activity) }
+
+      it("displays name") { expect(page).to have_text(activity.name) }
+      it("displays description") { expect(page).to have_text(activity.description) }
+      it("has edit link") { expect(page).to have_link(href: edit_activity_path(activity)) }
+      it("has destroy button") { expect(page).to have_button("Destroy") }
+      it("has back link") { expect(page).to have_link("Back") }
+
+      context "with active activity" do
+        it("displays archival sattus") { expect(page).to have_text("Active") }
+        it("has archive button") { expect(page).to have_button("Archive") }
+      end
+
+      context "with archived activity" do
+        before do
+          activity.archive!
+          visit activity_path(activity)
+        end
+
+        it("displays archival sattus") { expect(page).to have_text("Archived") }
+        it("has unarchive button") { expect(page).to have_button("Unarchive") }
+      end
+    end
+
     scenario "user does not get archived activities on index" do
       archived_activity = create :activity, user: user, archived: true
       visit root_path

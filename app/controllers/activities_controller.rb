@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: %i( show edit update destroy register_hit unregister_hit )
+  before_action :set_activity, except: %i( index new create )
+
 
   def register_hit
     if @activity.activity_hits.recent.any?

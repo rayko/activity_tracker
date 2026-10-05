@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def index
-    @activities = current_user.activities
+    @activities = current_user.activities.active
     @hits_this_month = ActivityHit.select("activity_id, COUNT(*) as hits").
                          where(activity: @activities).this_month.
                          group(:activity_id).

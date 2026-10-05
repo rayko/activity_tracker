@@ -34,6 +34,7 @@ RSpec.describe "Activities" do
 
       context "with active activity" do
         it("displays activity archival status") { expect(page).to have_text("Active") }
+        it("has archive button") { expect(page).to have_button("Archive") }
       end
 
       context "with archived activity" do
@@ -43,6 +44,7 @@ RSpec.describe "Activities" do
         end
 
         it("displays activity archival status") { expect(page).to have_text("Archived") }
+        it("has unarchive button") { expect(page).to have_button("Unarchive") }
       end
     end
 
@@ -78,12 +80,6 @@ RSpec.describe "Activities" do
       expect(page).to have_no_text(archived_activity.name)
     end
 
-    scenario "user lists activities" do
-      click_link "Manage Activities"
-      expect(page).to have_text(activity.name)
-      expect(page).to have_text(activity.description)
-    end
-
     scenario "user edits an activity" do
       click_link "Manage Activities"
       click_link "Edit", href: edit_activity_path(activity)
@@ -101,7 +97,7 @@ RSpec.describe "Activities" do
     scenario "user unarchives activity" do
       activity.archive!
       click_link "Manage Activities"
-      click_button "Un-Archive"
+      click_button "Unarchive"
       expect(activity.reload.archived).to be(false)
     end
   end

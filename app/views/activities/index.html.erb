@@ -4,7 +4,6 @@
       <tr class="border-b-2 border-gray-400">
         <th class="w-15 p-2 ">ID</th>
         <th class="p-2">Name</th>
-        <th class="hidden md:block p-2">Description</th>
         <th class="hidden md:block p-2">Status</th>
         <th class="p-2">Actions</th>
       </tr>
@@ -25,10 +24,6 @@
           </td>
 
           <td class="p-2 hidden md:block">
-            <%= activity.description %>
-          </td>
-
-          <td class="p-2 hidden md:block">
             <%= activity.archived? ? "Archived" : "Active" %>
           </td>
 
@@ -37,7 +32,7 @@
               <%= link_to "Edit", edit_activity_path(activity), class: regular_btn_class %>
               <%= button_to "Destroy", activity_path(activity), method: :delete, class: regular_red_btn_class, form: { data: { turbo_confirm: "Are you sure?" } } %>
               <% if activity.archived? %>
-                <%= button_to "Un-Archive", unarchive_activity_path(activity), method: :patch, class: regular_btn_class %>
+                <%= button_to "Unarchive", unarchive_activity_path(activity), method: :patch, class: regular_btn_class %>
               <% else %>
                 <%= button_to "Archive", archive_activity_path(activity), method: :patch, class: regular_btn_class %>
               <% end %>

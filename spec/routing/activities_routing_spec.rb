@@ -42,5 +42,13 @@ RSpec.describe ActivitiesController do
     it "routes to #unregister_hit" do
       expect(post: "/activities/1/unregister_hit").to route_to("activities#unregister_hit", id: "1")
     end
+
+    it "routes to #archive" do
+      expect(patch: "/activities/1/archive").to route_to("activities#archive", id: "1")
+    end
+
+    it "routes to #unarchive" do
+      expect(patch: "/activities/1/unarchive").to route_to("activities#unarchive", id: "1")
+    end
   end
 end

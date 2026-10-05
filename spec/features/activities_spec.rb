@@ -37,7 +37,8 @@ RSpec.describe "Activities" do
     scenario "user does not get archived activities on index" do
       archived_activity = create :activity, user: user, archived: true
       visit root_path
-      expect(page).not_to have_text(archived_activity.name)
+      expect(page).to have_text(activity.name)
+      expect(page).to have_no_text(archived_activity.name)
     end
 
     scenario "user lists activities" do

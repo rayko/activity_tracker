@@ -44,9 +44,9 @@ RSpec.describe Activity do
     let(:archived_activity) { create :activity, user: user, archived: true }
 
     describe ".active" do
-      before { active_activity; archived_activity; }
-
       subject { user.activities.active }
+
+      before { active_activity; archived_activity }
 
       it "returns unarchived activities" do
         expect(subject.count).to eq(1)
@@ -55,9 +55,9 @@ RSpec.describe Activity do
     end
 
     describe ".archived" do
-      before { active_activity; archived_activity; }
-
       subject { user.activities.archived }
+
+      before { active_activity; archived_activity }
 
       it "returns unarchived activities" do
         expect(subject.count).to eq(1)
@@ -76,7 +76,7 @@ RSpec.describe Activity do
 
     it "does not raise error if already archived" do
       activity.archive!
-      expect { activity.archive! }.not_to raise_error
+      expect { activity.archive! }.to_not raise_error
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe Activity do
 
     it "does not raise error if already archived" do
       activity.unarchive!
-      expect { activity.unarchive! }.not_to raise_error
+      expect { activity.unarchive! }.to_not raise_error
     end
   end
 
@@ -107,5 +107,4 @@ RSpec.describe Activity do
       expect(activity.reload.archived).to be(false)
     end
   end
-
 end

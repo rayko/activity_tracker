@@ -4,7 +4,7 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
-  scope :active, -> { where(archived: [false, nil]) }
+  scope :active, -> { where(archived: [ false, nil ]) }
   scope :archived, -> { where(archived: true) }
 
   def archive!

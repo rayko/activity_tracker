@@ -25,6 +25,27 @@ RSpec.describe "Activities" do
       find('div#trigger-user-options').click
     end
 
+    describe "index" do
+      before { visit activities_path }
+
+      it("displays activity name") { expect(page).to have_text(activity.name) }
+      it("displays edit link") { expect(page).to have_link(href: edit_activity_path(activity)) }
+      it("displays destroy button") { expect(page).to have_button("Destroy") }
+
+      context "with active activity" do
+        it("displays activity archival status") { expect(page).to have_text("Active") }
+      end
+
+      context "with archived activity" do
+        before do
+          activity.archive!
+          visit activities_path
+        end
+
+        it("displays activity archival status") { expect(page).to have_text("Archived") }
+      end
+    end
+
     describe "show page" do
       before { visit activity_path(activity) }
 

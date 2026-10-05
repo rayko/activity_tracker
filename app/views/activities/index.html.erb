@@ -5,6 +5,7 @@
         <th class="w-15 p-2 ">ID</th>
         <th class="p-2">Name</th>
         <th class="hidden md:block p-2">Description</th>
+        <th class="hidden md:block p-2">Status</th>
         <th class="p-2">Actions</th>
       </tr>
     </thead>
@@ -25,6 +26,10 @@
 
           <td class="p-2 hidden md:block">
             <%= activity.description %>
+          </td>
+
+          <td class="p-2 hidden md:block">
+            <%= activity.archived? ? "Archived" : "Active" %>
           </td>
 
           <td class="p-2  w-px">

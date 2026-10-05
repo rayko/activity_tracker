@@ -28,6 +28,11 @@ RSpec.describe "/activities" do
         expect { post route }.to_not change(activity.activity_hits, :count)
       end
 
+      it "does not create hit if activity is archived" do
+        activity.archive!
+        expect { post route }.to_not change(activity.activity_hits, :count)
+      end
+
       it "can create hit after 8 hours from last one" do
         activity.activity_hits.create!(date: 9.hours.ago)
         expect { post route }.to change(activity.activity_hits, :count).by(1)
@@ -59,6 +64,11 @@ RSpec.describe "/activities" do
 
       it "fails if no hits today" do
         post route
+        expect { post route }.to_not change(activity.activity_hits, :count)
+      end
+
+      it "does not remove hit if activity is archived" do
+        activity.archive!
         expect { post route }.to_not change(activity.activity_hits, :count)
       end
     end
@@ -196,6 +206,36 @@ RSpec.describe "/activities" do
       it "redirects to root" do
         delete route
         expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  describe "PATCH /archive" do
+    let(:route) { archive_activity_path(activity) }
+
+    it_behaves_like "anon_user_request", :patch
+
+    context "with authenticated user" do
+      before { sign_in(user) }
+
+      it "archives activity" do
+        patch route
+        expect(activity.reload.archived).to be(true)
+      end
+    end
+  end
+
+  describe "PATCH /unarchive" do
+    let(:route) { unarchive_activity_path(activity) }
+
+    it_behaves_like "anon_user_request", :patch
+
+    context "with authenticated user" do
+      before { sign_in(user) }
+
+      it "unarchives activity" do
+        patch route
+        expect(activity.reload.archived).to be(false)
       end
     end
   end

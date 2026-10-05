@@ -1,23 +1,51 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: %i( show edit update destroy register_hit unregister_hit )
+  before_action :set_activity, except: %i( index new create )
+
+  def archive
+    @activity.archive!
+    flash[:notice] = "Activity archived"
+    redirect_to activities_path
+  end
+
+  def unarchive
+    @activity.unarchive!
+    flash[:notice] = "Activity unarchived"
+    redirect_to activities_path
+  end
 
   def register_hit
     if @activity.activity_hits.recent.any?
       flash[:alert] = "Already registered today"
-    else
-      @activity.activity_hits.create!(date: DateTime.now)
-      flash[:notice] = "Registered hit"
+      redirect_to root_path
+      return
     end
+
+    if @activity.archived?
+      flash[:alert] = "Activity is archived"
+      redirect_to root_path
+      return
+    end
+
+    @activity.activity_hits.create!(date: DateTime.now)
+    flash[:notice] = "Registered hit"
     redirect_to root_path
   end
 
   def unregister_hit
     if !@activity.activity_hits.recent.any?
       flash[:alert] = "No hits today"
-    else
-      @activity.activity_hits.recent.take.destroy
-      flash[:notice] = "Unregistered hit"
+      redirect_to root_path
+      return
     end
+
+    if @activity.archived?
+      flash[:alert] = "Activity is archived"
+      redirect_to root_path
+      return
+    end
+
+    @activity.activity_hits.recent.take.destroy
+    flash[:notice] = "Unregistered hit"
     redirect_to root_path
   end
 

@@ -34,6 +34,13 @@ RSpec.describe "Activities" do
       find('div#trigger-user-options').click
     end
 
+    scenario "user does not get archived activities on index" do
+      archived_activity = create :activity, user: user, archived: true
+      visit root_path
+      expect(page).to have_text(activity.name)
+      expect(page).to have_no_text(archived_activity.name)
+    end
+
     scenario "user lists activities" do
       click_link "Manage Activities"
       expect(page).to have_text(activity.name)
@@ -46,6 +53,19 @@ RSpec.describe "Activities" do
       fill_in "activity_name", with: "My Activity"
       click_button "Save"
       expect(activity.reload.name).to eq("My Activity")
+    end
+
+    scenario "user archives activity" do
+      click_link "Manage Activities"
+      click_button "Archive"
+      expect(activity.reload.archived).to be(true)
+    end
+
+    scenario "user unarchives activity" do
+      activity.archive!
+      click_link "Manage Activities"
+      click_button "Un-Archive"
+      expect(activity.reload.archived).to be(false)
     end
 
     scenario "user registers activity hit" do

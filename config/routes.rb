@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     member do
       post :register_hit
       post :unregister_hit
+      patch :archive
+      patch :unarchive
     end
   end
   devise_for :users

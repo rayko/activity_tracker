@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :activity_hits, only: %i( destroy )
-  
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

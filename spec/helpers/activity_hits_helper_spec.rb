@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe ActivityHitsHelper, type: :helper do
+RSpec.describe ActivityHitsHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

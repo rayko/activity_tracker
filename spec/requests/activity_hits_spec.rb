@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ActivityHits", type: :request do
+RSpec.describe "ActivityHits" do
   let(:user) { create :user }
   let(:activity) { create :activity, user: user }
   let(:hit) { create :activity_hit, activity: activity }

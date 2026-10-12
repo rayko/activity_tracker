@@ -27,7 +27,7 @@ class ActivitiesController < ApplicationController
     end
 
     @activity.activity_hits.create!(date: DateTime.now)
-    flash[:notice] = "Registered hit"
+    flash[:notice] = "Well done! Registered hit for #{@activity.name}"
     redirect_to root_path
   end
 
@@ -45,7 +45,7 @@ class ActivitiesController < ApplicationController
     end
 
     @activity.activity_hits.recent.take.destroy
-    flash[:notice] = "Unregistered hit"
+    flash[:notice] = "Reverted hit for #{@activity.name}"
     redirect_to root_path
   end
 

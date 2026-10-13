@@ -1,0 +1,51 @@
+<div class="border-1 border-gray-300 w-fit m-auto p-3 rounded-sm bg-slate-300 shadow-md shadow-gray-500">
+  <div class="text-center mb-5 border-b text-gray-500 border-gray-400">
+    Activity Overview Graph
+  </div>
+  <% start_date = ((Date.today - 54.weeks).beginning_of_week - 1.day).to_date %>
+  <% date = start_date %>
+  <table class="table-fixed border-separate border-spacing-x-[3px] border-spacing-y-[0px] text-gray-500">
+    <thead class="">
+      <tr class="">
+        <th colspan="0">
+        </th>
+        <% month = date.strftime("%b") %>
+        <% span = 1 %>
+        <% 55.times do |week| %>
+          <% if (date + week.weeks).strftime("%b") != month %>
+            <th colspan=<%= span %> class=" text-sm font-normal">
+              <%= month %>
+            </th>
+            <% span = 1 %>
+            <% month =  (date + week.weeks).strftime("%b")%>
+          <% else %>
+            <% span += 1 %>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% 7.times do |wday| %>
+        <% date = start_date + wday.days %>
+        <tr class="text-sm">
+          <td class="w-8 pr-2 text-end">
+            <%= date.strftime("%a").upcase %>
+          </td>
+          <% 55.times do |week| %>
+            <% day = (date + week.weeks).to_date.strftime("%A") %>
+            <% hits = @daily_counts[(date + week.weeks).to_s] || 0 %>
+            <td title="<%= day %> <%= (date + week.weeks).to_date %>: <%= hits %>" class="">
+              <% unless (date + week.weeks) > Date.today %>
+                <% color = graph_count_color(hits) %>
+                <div class="h-[12px] w-[12px] <%= color %> border-1 border-gray-400 rounded-xs">
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>

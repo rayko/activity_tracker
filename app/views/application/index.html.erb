@@ -47,3 +47,7 @@
 <div class="w-50">
   <%= link_to "New activity", new_activity_path, class: regular_btn_class %>
 </div>
+
+<div class="mt-5 overflow-auto p-1">
+  <%= render partial: "activity_graph" %>
+</div>

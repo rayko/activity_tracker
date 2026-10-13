@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def graph_count_color(count)
+    # Listing all colors here is required for Tailwind to generate them
+    colors = %w( bg-gray-200  bg-green-300 bg-green-400 bg-green-500 bg-green-600 bg-green-700 bg-green-800 )
+    return colors.last if count >= colors.size
+    colors[count]
+  end
+
   def month_name(date)
     date.strftime("%B")
   end

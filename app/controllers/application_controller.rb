@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
     @daily_counts = ActivityHit.select("DATE(date), COUNT(*) as hits").
                       where("date > ?", 1.year.ago).
                       where(activity_id: @activities.map(&:id)).
-                      group("DATE(date)").map{ |item| [item.date.to_s, item.hits] }.to_h
+                      group("DATE(date)").map { |item| [ item.date.to_s, item.hits ] }.to_h
   end
 end
